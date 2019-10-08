@@ -1,0 +1,27 @@
+insert into mahasiswa(NIM, Nama ,Kelas) values ('L200080080','Agustina','B')
+
+update mahasiswa SET Nama='Agustina Anggraini' where Nama='Agustina'
+
+create table nilai(
+    NIM varchar(10)primary key null,
+    Nama_MK varchar(20) null,
+    Nilai_Angka INT null,
+    Nilai_Huruf char(5)null
+    )
+
+select mahasiswa.NIM, mahasiswa.Nama, Nilai.Nama_MK,Nilai.Nilai_Angka, Nilai.Nilai_Huruf from (mahasiswa join Nilai ON mahasiswa.NIM=Nilai.NIM)
+
+insert into nilai(NIM, Nama_MK ,Nilai_Angka,Nilai_Huruf) values ('L200080002','Kapita Selekta','60','BC')
+
+select mahasiswa.NIM, mahasiswa.Nama, Nilai.Nama_MK,Nilai.Nilai_Angka, Nilai.Nilai_Huruf from (mahasiswa left join Nilai ON mahasiswa.NIM=Nilai.NIM)
+
+
+select mahasiswa.NIM, mahasiswa.Nama, Nilai.Nama_MK,Nilai.Nilai_Angka, Nilai.Nilai_Huruf from (mahasiswa right join Nilai ON mahasiswa.NIM=Nilai.NIM)
+
+select avg(Nilai_Angka)'Rata-rata nilai'From nilai
+
+select sum(NIlai_Angka)'Total nilai' from nilai
+
+create view KHS as select mahasiswa.NIM,nilai.Nama_MK,nilai.Nilai_Angka,nilai.Nilai_Huruf from (mahasiswa inner join nilai on mahasiswa.NIM=nilai.NIM)
+
+update mahasiswa set Alamat='Sragen' where NIM="L200080080"
